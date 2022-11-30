@@ -2,7 +2,21 @@ import { component$, useContextProvider, useStore, createContext } from '@builde
 import { Post } from './post';
 import { Searchbar } from './searchbar';
 
-export const Context = createContext('posts')
+interface ContextState {
+  activeButton: number;
+  data: postData[]
+}
+
+interface postData {
+  postId: number;
+  author: string;
+  song: string | undefined;
+  content: string;
+  likes: number
+  date: Date
+}
+
+export const Context = createContext<ContextState>('posts')
 
 export const Timeline = component$(() => {
 
@@ -29,8 +43,8 @@ export const Timeline = component$(() => {
     {
       postId: 3,
       author: "Intellibus",
-      song: "Rick Ross",
-      content: "Boss",
+      song: "Elton John - Rocketman",
+      content: "I sing this in the shower all the time",
       likes: 0,
       date: new Date(
         "22 April, 2021")
@@ -38,8 +52,8 @@ export const Timeline = component$(() => {
     {
       postId: 4,
       author: "Thomas",
-      song: "Burna Boy",
-      content: "Booty meat",
+      song: "Michael Jackson - Thriller",
+      content: "A classic!",
       likes: 9,
       date: new Date(
         "16 June, 2022")
@@ -53,14 +67,7 @@ export const Timeline = component$(() => {
   useContextProvider(Context, state)
 
 
-  interface postData {
-    postId: number;
-    author: string;
-    song: string;
-    content: string;
-    likes: number
-    date: Date
-  }
+
 
 
 
@@ -71,12 +78,12 @@ export const Timeline = component$(() => {
 
   const sortedTimeline = state.activeButton === 0 ? sampleData.sort((a, b) => {
     if (a.date < b.date) {
-      return -1
-    } else {
       return 1
+    } else {
+      return -1
     }
   })
-    : state.activeButton === 1 ? sampleData.sort((a, b) => a.likes - b.likes)
+    : state.activeButton === 1 ? sampleData.sort((a, b) => b.likes - a.likes)
       : sampleData
 
   return (

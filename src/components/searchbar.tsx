@@ -166,7 +166,7 @@ export const Searchbar = component$(() => {
     track(() => searchState.query);
     const debounced = setTimeout(() => {
       searchState.debouncedQuery = searchState.query;
-    }, 500);
+    }, 1000);
     return () => clearTimeout(debounced);
   });
 
@@ -265,7 +265,7 @@ export const Searchbar = component$(() => {
         </div>}
         onResolved={(songInfo) => {
           return (
-            <div class="font-black flex flex-col gap-1 w-1/2 text-center z-10">
+            <div class="text-white flex flex-col gap-1 w-1/2 text-center z-10 bg-slate-900">
               {searchState.setSearchFilter === "tracks" &&
                 songInfo.tracks?.items.map(track => (<div >{`${track.data.name}`}</div>))}
               {searchState.setSearchFilter === "artists" && songInfo.artists?.items?.map((artist) => (<div>{artist.data.profile.name}</div>))}

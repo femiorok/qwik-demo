@@ -1,5 +1,7 @@
 # Qwik vs. React 
 
+[You can view a video demo of the application here.](https://youtu.be/qzuEd4g6mC0)
+
 Qwik is yet another new Javascript framework that looks to solve the never-ending battle of reducing bundle sizes and improving page load times for SEO and conversion rates. It's 
 built on principles very similar to React, while having a lot of modern features that make it better than vanilla React. 
 
